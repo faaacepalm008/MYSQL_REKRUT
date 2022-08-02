@@ -1,0 +1,27 @@
+INSERT INTO sklep.quantity (part_number,quantity,warehouse) Values (000014,10,1); 
+
+INSERT INTO sklep.quantity (part_number,manufacturer,main_part_number,category,origin) Values ("300 282","PURFLUX","A460","Filtry powietrza	","SI");
+
+select * from data;
+select * from weight;
+select * from price;
+select * from quantity;
+select * from deposit;
+-----------------------------
+select data.main_part_number,
+data.manufacturer,
+data.category,
+data.origin,
+deposit.deposit,
+quantity.quantity
+#price.price
+from data join deposit on data.part_number = deposit.deposit
+#join price on deposit.part_number = price.price
+join quantity on deposit.part_number = quantity.quantity
+where quantity.warehouse = 3
+or quantity.warehouse = 9
+or quantity.warehouse like '%J%'
+or quantity.warehouse like '%A%'
+or quantity.warehouse like '%H%'
+order by quantity.warehouse;
+---------------------------------------
